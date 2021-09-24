@@ -5,22 +5,30 @@ import { create, all } from "mathjs";
 const config = {};
 const math = create(all, config);
 
-import Input from "../components/UI/Input";
-import Result from "../components/Result";
+import Header from "../components/UI/Header";
+import Result from "../components/Result/Result";
+import Footer from "../components/UI/Footer";
+import Form from "../components/UI/Form";
 
 export default function Home() {
   const [calculate, setCalculate] = useState(false);
   const [method, setMethod] = useState(null);
   const [data, setData] = useState(null);
+  const [expertMode, setExpertMode] = useState(false);
+
+  function changeMode(event) {
+    setExpertMode(event.target.checked);
+  }
 
   function generateResult(event) {
     const f = math.parse(event.target["main-function"].value.trim());
     let df = event.target["derivative-function"].value.trim();
-    const x_1 = event.target["guess-root-1"].value.trim();
-    const x0 = event.target["guess-root0"].value.trim();
+    let x_1 = event.target["guess-root-1"].value.trim();
+    let x0 = event.target["guess-root0"].value.trim();
+    x0 = expertMode ? x0 : 1;
     let e = event.target["error"].value.trim();
     e = e ? e : 0.001;
-    const p = event.target["precision"].value.trim();
+    let p = event.target["precision"].value.trim();
     let i = event.target["iterate"].value.trim();
     i = i ? i : 40;
 
@@ -73,70 +81,16 @@ export default function Home() {
       <Head>
         <title>Root Finder</title>
       </Head>
-
-      <div className="flex flex-col min-h-screen p-10 font-sans">
-        <header className="mb-16">
-          <h1 className="table-caption font-black">Root Finder</h1>
-        </header>
+      <div className="flex flex-col min-h-screen px-10 pt-10 pb-20 font-sans">
+        <Header changeMode={changeMode} />
         <main className="text-center">
           <div className="w-min mx-auto my-10 whitespace-nowrap">
             <h2 className="font-black text-7xl">Root Finder</h2>
             <h3 className="text-xl">Using Newton-Raphson or Secant Method</h3>
           </div>
-          <form className="w-min mx-auto my-5" onSubmit={submitHandler}>
-            <div className="my-1">
-              <Input
-                label="f(x)="
-                id="main-function"
-                type="text"
-                placeholder="e^(-x)-x"
-                required={true}
-              ></Input>
-              <Input
-                label="f'(x)="
-                id="derivative-function"
-                type="text"
-                placeholder="If any"
-              ></Input>
-              <Input
-                label="Guess root x<sub>-1</sub>="
-                id="guess-root-1"
-                type="number"
-                step="any"
-                placeholder="For Secant method"
-              ></Input>
-              <Input
-                label="Guess root x<sub>0</sub>="
-                id="guess-root0"
-                type="number"
-                step="any"
-                placeholder="Required"
-                required={true}
-              />
-              <Input
-                label="Error(ε)="
-                id="error"
-                type="number"
-                min="0"
-                step="any"
-                placeholder="Default is 0.001"
-              />
-              <Input
-                label="Precision="
-                id="precision"
-                type="number"
-                min="1"
-                step="any"
-                placeholder="Significant figures"
-              />
-              <Input
-                label="Iterate="
-                id="iterate"
-                type="number"
-                min="1"
-                step="1"
-                placeholder="Default is 40"
-              />
+          <form className="w-min mx-auto my-5 transition-all" onSubmit={submitHandler}>
+            <div className="my-1 transition-all">
+              <Form display={expertMode}/>
             </div>
             <button
               className="my-1 px-1 border-2 border-black rounded"
@@ -145,17 +99,10 @@ export default function Home() {
               Proceed
             </button>
           </form>
-
           {calculate && <Result method={method} data={data} />}
         </main>
-
-        <footer className="w-min mx-auto mt-20 -mb-5 whitespace-nowrap">
-          Made with 🐧 by&nbsp;
-          <a href="https://hilmy.dev" target="_blank" rel="noopener noreferrer">
-            Muhammad Naufal Hilmy Makarim
-          </a>
-        </footer>
       </div>
+      <Footer />
     </>
   );
 }

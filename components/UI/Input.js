@@ -1,6 +1,6 @@
 export default function Input(props) {
   return (
-    <div className="flex my-1 whitespace-nowrap">
+    <div className={`flex my-1 whitespace-nowrap ${props.display? `` : `hidden`}`}>
       <label
         className="flex-none"
         htmlFor="error"

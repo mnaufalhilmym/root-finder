@@ -1,9 +1,12 @@
+import dynamic from "next/dynamic";
 import { create, all } from "mathjs";
 
 const config = {};
 const math = create(all, config);
 
 import RootResult from "./RootResult";
+
+const DynamicPlot = dynamic(() => import("./Graph"), { ssr: false }); //dynamic import without ssr
 
 export default function ModSecantResult(props) {
   let { f, x0, e, p, i } = props.data;
@@ -93,6 +96,7 @@ export default function ModSecantResult(props) {
         </tbody>
       </table>
       <RootResult p={p} root={result[result.length - 1].x1} />
+      <DynamicPlot data={{ f: f, x: result[result.length - 1].x1 }} />
     </>
   );
 }
