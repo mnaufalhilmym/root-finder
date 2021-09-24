@@ -33,6 +33,7 @@ export default function ExpertForm(props) {
         type="number"
         step="any"
         placeholder="Default is 1"
+        value={1}
       />
       <Input
         display={props.display}

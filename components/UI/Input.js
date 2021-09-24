@@ -15,6 +15,7 @@ export default function Input(props) {
         min={props.min}
         step={props.step}
         placeholder={props.placeholder}
+        value={props.value}
         required={props.required}
       />
     </div>
