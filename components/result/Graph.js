@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
-import { create, all, larger } from "mathjs";
+import { create, all } from "mathjs";
 
 const config = {};
 const math = create(all, config);
 
 export default function Graph(props) {
+  useEffect(() => {
+    props.setIsPlotted(true);
+  }, []);
   let { f, x } = props.data;
 
   const [xPlot, setXPlot] = useState({
@@ -50,7 +53,10 @@ export default function Graph(props) {
           marker: { color: "red" },
         },
       ]}
-      layout={{ uirevision: true }}
+      layout={{
+        uirevision: true,
+        dragmode: "pan",
+      }}
       onUpdate={(figure) => updateHandler(figure)}
     />
   );

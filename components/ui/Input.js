@@ -1,13 +1,19 @@
-export default function Input(props) {
+import { forwardRef } from "react";
+
+export default forwardRef(Input);
+
+function Input(props, ref) {
   return (
-    <div className={`flex my-1 whitespace-nowrap ${props.display? `` : `hidden`}`}>
+    <div
+      className={`flex my-1 whitespace-nowrap ${props.display ? `` : `hidden`}`}
+    >
       <label
         className="flex-none"
         htmlFor="error"
         dangerouslySetInnerHTML={{ __html: props.label }}
       />
       <input
-        className="flex-grow px-1 border-2 border-black rounded"
+        className="flex-grow px-1 border-2 border-black focus:outline-none focus:border-blue-500 rounded"
         id={props.id}
         name={props.id}
         type={props.type}
@@ -17,6 +23,7 @@ export default function Input(props) {
         placeholder={props.placeholder}
         value={props.value}
         required={props.required}
+        ref={ref}
       />
     </div>
   );
