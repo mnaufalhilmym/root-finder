@@ -82,7 +82,7 @@ export default function ExpertForm(props) {
             label="f(x)="
             id="main-function"
             type="text"
-            placeholder="e^(-x)-x"
+            placeholder="25e^(-0.2x)cos(3x-0.312)"
             required={true}
             ref={fElement}
           ></Input>
