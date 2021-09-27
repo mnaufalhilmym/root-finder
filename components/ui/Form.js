@@ -7,6 +7,8 @@ const math = create(all, config);
 import Input from "./Input";
 
 export default function ExpertForm(props) {
+  // console.log("form");
+
   const fElement = createRef();
 
   useEffect(() => {
@@ -72,10 +74,7 @@ export default function ExpertForm(props) {
 
   return (
     <>
-      <form
-        className="w-min mx-auto my-5"
-        onSubmit={submitHandler}
-      >
+      <form className="w-min mx-auto my-5" onSubmit={submitHandler}>
         <div className="my-1">
           <Input
             display={true}

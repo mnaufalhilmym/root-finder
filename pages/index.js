@@ -8,6 +8,8 @@ import Form from "../components/ui/Form";
 import RemountResult from "../components/helper/RemountResult";
 
 export default function Home() {
+  // console.log("index");
+
   const [showResult, setShowResult] = useState(false);
   const [method, setMethod] = useState(null);
   const [data, setData] = useState(null);
@@ -40,7 +42,9 @@ export default function Home() {
               setShowResult={setShowResult}
             />
           )}
-          {showResult && <Result method={method} data={data} />}
+          {showResult && (
+            <Result method={method} setMethod={setMethod} data={data} />
+          )}
         </main>
       </div>
       <Footer />

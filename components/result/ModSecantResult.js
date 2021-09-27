@@ -5,7 +5,10 @@ const config = {};
 const math = create(all, config);
 
 export default function ModSecantResult(props) {
+  // console.log("modsecantresult");
+
   let error;
+  let infroot = false;
 
   useEffect(() => {
     if (!error) {
@@ -14,8 +17,10 @@ export default function ModSecantResult(props) {
         p: p,
         root: result[result.length - 1].x1,
       });
-    } else {
+    } else if (error) {
       props.setIsError(true);
+    } else if (infroot) {
+      alert("Root is infinite!");
     }
   }, []);
 
@@ -39,6 +44,10 @@ export default function ModSecantResult(props) {
     } catch (e) {
       error = e;
       return;
+    }
+    if (!Number.isFinite(x1)) {
+      infroot = true;
+      break;
     }
     result.push({
       step: step,

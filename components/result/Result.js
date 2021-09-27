@@ -10,6 +10,8 @@ import RootResult from "./RootResult";
 const DynamicPlot = dynamic(() => import("./Graph"), { ssr: false }); //dynamic import without ssr
 
 export default function Result(props) {
+  // console.log(`result method: ${props.method}`);
+
   const [isError, setIsError] = useState(false);
   const [result, setResult] = useState(null);
   const [isPlotted, setIsPlotted] = useState(false);
@@ -23,13 +25,28 @@ export default function Result(props) {
         {props.method === "modsecant" && <h5>Modified Secant Method</h5>}
         {!result && <Loading>Calculating</Loading>}
         {props.method === "newton" && (
-          <NewtonResult data={props.data} setResult={setResult} setIsError={setIsError}/>
+          <NewtonResult
+            data={props.data}
+            setMethod={props.setMethod}
+            setResult={setResult}
+            setIsError={setIsError}
+          />
         )}
         {props.method === "secant" && (
-          <SecantResult data={props.data} setResult={setResult} setIsError={setIsError} />
+          <SecantResult
+            data={props.data}
+            setMethod={props.setMethod}
+            setResult={setResult}
+            setIsError={setIsError}
+          />
         )}
         {props.method === "modsecant" && (
-          <ModSecantResult data={props.data} setResult={setResult} setIsError={setIsError} />
+          <ModSecantResult
+            data={props.data}
+            setMethod={props.setMethod}
+            setResult={setResult}
+            setIsError={setIsError}
+          />
         )}
         {result && <RootResult p={result.p} root={result.root} />}
         {!isPlotted && <Loading>Processing graph</Loading>}

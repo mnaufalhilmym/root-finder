@@ -5,17 +5,23 @@ const config = {};
 const math = create(all, config);
 
 export default function NewtonResult(props) {
-  let error;
+  // console.log("newton result");
+
+  let error = false;
+  let infroot = false;
 
   useEffect(() => {
-    if (!error) {
+    if (!(error || infroot)) {
       props.setResult({
         f: f,
         p: p,
         root: result[result.length - 1].x1,
       });
-    } else {
+      console.log(typeof result[result.length - 1].x1);
+    } else if (error) {
       props.setIsError(true);
+    } else if (infroot) {
+      props.setMethod("secant");
     }
   }, []);
 
@@ -36,6 +42,10 @@ export default function NewtonResult(props) {
       ea = math.abs((x1 - x0) / x1);
     } catch (e) {
       error = e;
+      break;
+    }
+    if (!Number.isFinite(x1)) {
+      infroot = true;
       break;
     }
     result.push({

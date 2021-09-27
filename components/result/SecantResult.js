@@ -5,7 +5,10 @@ const config = {};
 const math = create(all, config);
 
 export default function SecantResult(props) {
+  // console.log("secantresult");
+
   let error;
+  let infroot = false;
 
   useEffect(() => {
     if (!error) {
@@ -14,8 +17,10 @@ export default function SecantResult(props) {
         p: p,
         root: result[result.length - 1].x1,
       });
-    } else {
+    } else if (error) {
       props.setIsError(true);
+    } else if (infroot) {
+      props.setMethod("modsecant");
     }
   }, []);
 
@@ -36,6 +41,10 @@ export default function SecantResult(props) {
       ea = math.abs((x1 - x0) / x1);
     } catch (e) {
       error = e;
+      break;
+    }
+    if (!Number.isFinite(x1)) {
+      infroot = true;
       break;
     }
     result.push({
