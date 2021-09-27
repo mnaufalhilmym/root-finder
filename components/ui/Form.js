@@ -25,6 +25,7 @@ export default function ExpertForm(props) {
     e = e ? e : 0.001;
     let p = event.target["precision"].value.trim();
     let i = event.target["iterate"].value.trim();
+    i = i ? i : 40;
 
     if (x_1 !== "") {
       props.setMethod("secant");
@@ -35,7 +36,7 @@ export default function ExpertForm(props) {
           const x = math.parse("x");
           df = math.derivative(f, x);
         } catch (e) {
-          alert(e);
+          console.log(e);
         }
         if (df === null) {
           props.setMethod("modsecant");
@@ -44,8 +45,7 @@ export default function ExpertForm(props) {
         try {
           df = math.parse(df);
         } catch (e) {
-          alert(e);
-          return;
+          console.log(e);
         }
         if (df === null) {
           props.setMethod("modsecant");
