@@ -140,7 +140,7 @@ export default function ExpertForm(props) {
           />
         </div>
         <button
-          className="my-1 px-1 border-2 border-black rounded"
+          className="my-1 px-1 border-2 border-black hover:border-blue-500 hover:text-blue-500 active:text-white active:bg-blue-500 active:border-blue-500 rounded"
           type="submit"
         >
           Proceed
