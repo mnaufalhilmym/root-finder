@@ -16,7 +16,7 @@ export default function Result(props) {
 
   return (
     !isError && (
-      <div className="w-min max-w-full overflow-x-auto mx-auto p-4 border-2 border-black rounded whitespace-nowrap">
+      <div className="max-w-full overflow-x-auto mx-auto p-4 border-2 border-black rounded whitespace-nowrap">
         <h4>Result</h4>
         {props.method === "newton" && <h5>Newton-Raphson Method</h5>}
         {props.method === "secant" && <h5>Secant Method</h5>}

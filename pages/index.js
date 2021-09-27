@@ -18,7 +18,7 @@ export default function Home() {
       <Head>
         <title>Root Finder</title>
       </Head>
-      <div className="min-w-min">
+      <div className="w-screen overflow-x-auto">
         <div className="flex flex-col min-h-screen px-10 pt-10 pb-20 font-sans">
           <Header setExpertMode={setExpertMode} />
           <main className="text-center">
