@@ -74,10 +74,10 @@ export default function ExpertForm(props) {
   return (
     <>
       <form
-        className="w-min mx-auto my-5 transition-all"
+        className="w-min mx-auto my-5"
         onSubmit={submitHandler}
       >
-        <div className="my-1 transition-all">
+        <div className="my-1">
           <Input
             display={true}
             label="f(x)="
