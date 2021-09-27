@@ -67,7 +67,7 @@ export default function SecantResult(props) {
 
   return (
     !error && (
-      <table className="my-4">
+      <table className="my-4 mx-auto">
         <tbody>
           <tr>
             <th className="px-3">Step</th>
