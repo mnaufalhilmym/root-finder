@@ -44,7 +44,7 @@ export default function SecantResult(props) {
     x_1 = x0;
     x0 = x1;
     ++step;
-  } while (e < ea && step <= i);
+  } while (e < ea && (i ? (step <= i) : true));
 
   return (
     <table className="my-4">

@@ -42,7 +42,7 @@ export default function NewtonResult(props) {
     });
     x0 = x1;
     ++step;
-  } while (e < ea && step <= i);
+  } while (e < ea && (i ? (step <= i) : true));
 
   return (
     <table className="my-4">

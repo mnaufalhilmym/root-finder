@@ -20,7 +20,9 @@ export default function ExpertForm(props) {
     let df = event.target["derivative-function"].value.trim();
     let x_1 = event.target["guess-root-1"].value.trim();
     let x0 = event.target["guess-root0"].value.trim();
+    x0 = x0 ? x0 : 1;
     let e = event.target["error"].value.trim();
+    e = e ? e : 0.001;
     let p = event.target["precision"].value.trim();
     let i = event.target["iterate"].value.trim();
 
@@ -135,7 +137,6 @@ export default function ExpertForm(props) {
             min="1"
             step="1"
             placeholder="Default is 40"
-            defaultValue={40}
           />
         </div>
         <button
