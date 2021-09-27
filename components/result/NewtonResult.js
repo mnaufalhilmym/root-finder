@@ -17,7 +17,6 @@ export default function NewtonResult(props) {
         p: p,
         root: result[result.length - 1].x1,
       });
-      console.log(typeof result[result.length - 1].x1);
     } else if (error) {
       props.setIsError(true);
     } else if (infroot) {
