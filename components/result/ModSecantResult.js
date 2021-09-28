@@ -19,7 +19,9 @@ export default function ModSecantResult(props) {
       });
     } else {
       props.setIsError(true);
-      alert("Root is infinite!");
+      if (infroot) {
+        alert("Root is infinite!");
+      }
     }
   }, []);
 
