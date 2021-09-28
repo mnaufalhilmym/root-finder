@@ -11,15 +11,14 @@ export default function ModSecantResult(props) {
   let infroot = false;
 
   useEffect(() => {
-    if (!error) {
+    if (!(error || infroot)) {
       props.setResult({
         f: f,
         p: p,
         root: result[result.length - 1].x1,
       });
-    } else if (error) {
+    } else {
       props.setIsError(true);
-    } else if (infroot) {
       alert("Root is infinite!");
     }
   }, []);

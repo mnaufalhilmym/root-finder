@@ -18,7 +18,13 @@ export default function ExpertForm(props) {
   }, []);
 
   async function generateResult(event) {
-    const f = math.parse(event.target["main-function"].value.trim());
+    let f = event.target["main-function"].value.trim();
+    try {
+      f = math.parse(f);
+    } catch (e) {
+      alert(e);
+      return;
+    }
     let df = event.target["derivative-function"].value.trim();
     let x_1 = event.target["guess-root-1"].value.trim();
     let x0 = event.target["guess-root0"].value.trim();

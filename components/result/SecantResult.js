@@ -7,11 +7,11 @@ const math = create(all, config);
 export default function SecantResult(props) {
   // console.log("secantresult");
 
-  let error;
+  let error = false;
   let infroot = false;
 
   useEffect(() => {
-    if (!error) {
+    if (!(error || infroot)) {
       props.setResult({
         f: f,
         p: p,
