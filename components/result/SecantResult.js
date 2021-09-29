@@ -37,9 +37,11 @@ export default function SecantResult(props) {
 
   let { f, x_1, x0, e, p, i } = props.data;
   let fx_1, fx0, x1, ea;
-  let step = 1;
+  let step = 0,
+    trend = 1;
   const result = [];
   do {
+    ++step;
     try {
       fx_1 = f.evaluate({ x: x_1 });
       fx0 = f.evaluate({ x: x0 });
@@ -67,10 +69,16 @@ export default function SecantResult(props) {
       x1: x1,
       ea: ea,
     });
+    if (math.abs(x1) - math.abs(x0) > 0) {
+      ++trend;
+    }
     x_1 = x0;
     x0 = x1;
-    ++step;
   } while (e < ea && (i ? step <= i : true));
+
+  if (step >= 10 && trend === step) {
+    error = "Divergence! Try using another method!";
+  }
 
   if (error) {
     alert(error);

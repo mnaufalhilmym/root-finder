@@ -27,9 +27,11 @@ export default function ModSecantResult(props) {
 
   let { f, x0, e, p, i } = props.data;
   let dx0, fx0, x0_dx0, fx0_dx0, x1, ea;
-  let step = 1;
+  let step = 0,
+    trend = 1;
   const result = [];
   do {
+    ++step;
     try {
       dx0 = 0.01 * x0;
       fx0 = f.evaluate({ x: x0 });
@@ -59,9 +61,15 @@ export default function ModSecantResult(props) {
       x1: x1,
       ea: ea,
     });
+    if (math.abs(x1) - math.abs(x0) > 0) {
+      ++trend;
+    }
     x0 = x1;
-    ++step;
   } while (e < ea && (i ? step <= i : true));
+
+  if (step >= 10 && trend === step) {
+    error = "Divergence! Try using another method!";
+  }
 
   if (error) {
     alert(error);
