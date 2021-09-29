@@ -36,6 +36,7 @@ export default function Result(props) {
           <SecantResult
             data={props.data}
             setMethod={props.setMethod}
+            setData={props.setData}
             setResult={setResult}
             setIsError={setIsError}
           />

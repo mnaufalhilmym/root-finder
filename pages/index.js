@@ -43,7 +43,7 @@ export default function Home() {
             />
           )}
           {showResult && (
-            <Result method={method} setMethod={setMethod} data={data} />
+            <Result method={method} setMethod={setMethod} data={data} setData={setData}/>
           )}
         </main>
       </div>

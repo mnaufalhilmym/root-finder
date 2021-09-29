@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { create, all } from "mathjs";
+import { data } from "autoprefixer";
 
 const config = {};
 const math = create(all, config);
@@ -21,6 +22,16 @@ export default function SecantResult(props) {
       props.setIsError(true);
     } else if (infroot) {
       props.setMethod("newton");
+      const x = math.parse("x");
+      props.setData({
+        f: f,
+        df: math.derivative(f, x),
+        x_1: x_1,
+        x0: x0,
+        e: e,
+        p: p,
+        i: i,
+      });
     }
   }, []);
 
