@@ -20,7 +20,7 @@ export default function NewtonResult(props) {
     } else if (error) {
       props.setIsError(true);
     } else if (infroot) {
-      props.setMethod("secant");
+      props.setMethod("modsecant");
     }
   }, []);
 
