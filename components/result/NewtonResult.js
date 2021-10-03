@@ -61,7 +61,7 @@ export default function NewtonResult(props) {
       ++trend;
     }
     x0 = x1;
-  } while (e < ea && (i ? step <= i : true));
+  } while (e < ea && (i ? step < i : true));
 
   if (step >= 10 && trend === step) {
     error = "Divergence! Try using another method!";

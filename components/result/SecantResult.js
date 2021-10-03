@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { create, all } from "mathjs";
-import { data } from "autoprefixer";
 
 const config = {};
 const math = create(all, config);
@@ -74,7 +73,7 @@ export default function SecantResult(props) {
     }
     x_1 = x0;
     x0 = x1;
-  } while (e < ea && (i ? step <= i : true));
+  } while (e < ea && (i ? step < i : true));
 
   if (step >= 10 && trend === step) {
     error = "Divergence! Try using another method!";
